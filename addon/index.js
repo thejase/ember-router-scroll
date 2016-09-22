@@ -5,7 +5,7 @@ const {
   computed,
   get,
   inject,
-  run: { next },
+  run: { scheduleOnce },
 } = Ember;
 
 export default Ember.Mixin.create({
@@ -26,7 +26,7 @@ export default Ember.Mixin.create({
 
 		if (get(this, 'isFastBoot')) { return; }
 
-    next(() => this.updateScrollPosition(transitions));
+    scheduleOnce('afterRender', () => this.updateScrollPosition(transitions));
   },
 
   updateScrollPosition(transitions) {
